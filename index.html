@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Services Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-5">My Services Hub</h1>
+        
+        <!-- Search -->
+        <div class="row mb-4">
+            <div class="col-md-6 mx-auto">
+                <input type="text" id="search" class="form-control" placeholder="Search services...">
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary active" data-category="all">All</button>
+                    <button type="button" class="btn btn-outline-primary" data-category="productivity">Productivity</button>
+                    <button type="button" class="btn btn-outline-primary" data-category="tools">Tools</button>
+                    <button type="button" class="btn btn-outline-primary" data-category="ai">AI</button>
+                    <button type="button" class="btn btn-outline-primary" data-category="education">Education</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="row g-4" id="services-grid">
+            <!-- Content Planner -->
+            <div class="col-md-6 col-lg-4" data-category="productivity">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Content Planner</h5>
+                        <p class="card-text">Plan and track your video/post content. Keep record of published and upcoming content.</p>
+                        <a href="https://ligul.github.io/simple-planner/" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Tracker -->
+            <div class="col-md-6 col-lg-4" data-category="productivity">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Task Tracker</h5>
+                        <p class="card-text">Manage your tasks and to-do lists with this recursive task tracker.</p>
+                        <a href="https://ligul.github.io/recursive-task-tracker/spa.html" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Translator -->
+            <div class="col-md-6 col-lg-4" data-category="ai">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">AI Translator</h5>
+                        <p class="card-text">GPT-powered translation service for accurate and context-aware translations.</p>
+                        <a href="https://ligul.github.io/ai-translate/" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Texture Converter -->
+            <div class="col-md-6 col-lg-4" data-category="tools">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Texture Converter</h5>
+                        <p class="card-text">Convert textures between different 3D programs (Unity to Blender, etc.).</p>
+                        <a href="https://ligul.github.io/TextureConverter/convert.html" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alpha Shift -->
+            <div class="col-md-6 col-lg-4" data-category="education">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Alpha Shift</h5>
+                        <p class="card-text">Learn new alphabets by gradually replacing letters in text (Work in Progress).</p>
+                        <a href="https://ligul.github.io/alpha-shift/" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PhotoPea -->
+            <div class="col-md-6 col-lg-4" data-category="tools">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">PhotoPea</h5>
+                        <p class="card-text">Online photo editor (PhotoShop alternative). Forked project.</p>
+                        <a href="https://ligul.github.io/PhotoPea/" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Search functionality
+        document.getElementById('search').addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const description = card.querySelector('.card-text').textContent.toLowerCase();
+                const cardContainer = card.closest('[data-category]');
+                
+                if (title.includes(searchText) || description.includes(searchText)) {
+                    cardContainer.classList.remove('hidden');
+                } else {
+                    cardContainer.classList.add('hidden');
+                }
+            });
+        });
+
+        // Category filtering
+        document.querySelectorAll('[data-category]').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+                const cards = document.querySelectorAll('#services-grid > div');
+                
+                // Update active button
+                document.querySelectorAll('[data-category]').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show/hide cards
+                cards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
