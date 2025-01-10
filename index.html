@@ -8,12 +8,39 @@
     <style>
         .card {
             transition: transform 0.2s;
+            border: 1px solid rgba(0,0,0,.125);
         }
         .card:hover {
             transform: translateY(-5px);
         }
         .hidden {
             display: none !important;
+        }
+        /* Новые стили для кнопок категорий */
+        .category-btn {
+            background: none;
+            border: 1px solid #333;
+            color: #333;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+        .category-btn:hover {
+            background: #333;
+            color: white;
+        }
+        .category-btn.active {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+        /* Убираем стандартные стили Lux для кнопок в группе */
+        .btn-group .btn {
+            margin: 0 2px;
+        }
+        .btn-group > .btn {
+            border-radius: 0 !important;
         }
     </style>
 </head>
@@ -31,12 +58,12 @@
         <!-- Categories -->
         <div class="row mb-4">
             <div class="col-12 text-center">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary active" data-category="all">All</button>
-                    <button type="button" class="btn btn-outline-primary" data-category="productivity">Productivity</button>
-                    <button type="button" class="btn btn-outline-primary" data-category="tools">Tools</button>
-                    <button type="button" class="btn btn-outline-primary" data-category="ai">AI</button>
-                    <button type="button" class="btn btn-outline-primary" data-category="education">Education</button>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="category-btn active" data-category="all">ALL</button>
+                    <button type="button" class="category-btn" data-category="productivity">PRODUCTIVITY</button>
+                    <button type="button" class="category-btn" data-category="tools">TOOLS</button>
+                    <button type="button" class="category-btn" data-category="ai">AI</button>
+                    <button type="button" class="category-btn" data-category="education">EDUCATION</button>
                 </div>
             </div>
         </div>
@@ -47,9 +74,9 @@
             <div class="col-md-6 col-lg-4" data-category="productivity">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Content Planner</h5>
+                        <h5 class="card-title">CONTENT PLANNER</h5>
                         <p class="card-text">Plan and track your video/post content. Keep record of published and upcoming content.</p>
-                        <a href="https://ligul.github.io/simple-planner/" class="btn btn-primary">Open</a>
+                        <a href="https://ligul.github.io/simple-planner/" class="btn btn-dark">OPEN</a>
                     </div>
                 </div>
             </div>
@@ -58,9 +85,9 @@
             <div class="col-md-6 col-lg-4" data-category="productivity">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Task Tracker</h5>
+                        <h5 class="card-title">TASK TRACKER</h5>
                         <p class="card-text">Manage your tasks and to-do lists with this recursive task tracker.</p>
-                        <a href="https://ligul.github.io/recursive-task-tracker/spa.html" class="btn btn-primary">Open</a>
+                        <a href="https://ligul.github.io/recursive-task-tracker/spa.html" class="btn btn-dark">OPEN</a>
                     </div>
                 </div>
             </div>
@@ -69,9 +96,9 @@
             <div class="col-md-6 col-lg-4" data-category="ai">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">AI Translator</h5>
+                        <h5 class="card-title">AI TRANSLATOR</h5>
                         <p class="card-text">GPT-powered translation service for accurate and context-aware translations.</p>
-                        <a href="https://ligul.github.io/ai-translate/" class="btn btn-primary">Open</a>
+                        <a href="https://ligul.github.io/ai-translate/" class="btn btn-dark">OPEN</a>
                     </div>
                 </div>
             </div>
@@ -80,9 +107,9 @@
             <div class="col-md-6 col-lg-4" data-category="tools">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Texture Converter</h5>
+                        <h5 class="card-title">TEXTURE CONVERTER</h5>
                         <p class="card-text">Convert textures between different 3D programs (Unity to Blender, etc.).</p>
-                        <a href="https://ligul.github.io/TextureConverter/convert.html" class="btn btn-primary">Open</a>
+                        <a href="https://ligul.github.io/TextureConverter/convert.html" class="btn btn-dark">OPEN</a>
                     </div>
                 </div>
             </div>
@@ -91,9 +118,9 @@
             <div class="col-md-6 col-lg-4" data-category="education">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Alpha Shift</h5>
+                        <h5 class="card-title">ALPHA SHIFT</h5>
                         <p class="card-text">Learn new alphabets by gradually replacing letters in text (Work in Progress).</p>
-                        <a href="https://ligul.github.io/alpha-shift/" class="btn btn-primary">Open</a>
+                        <a href="https://ligul.github.io/alpha-shift/" class="btn btn-dark">OPEN</a>
                     </div>
                 </div>
             </div>
@@ -102,9 +129,9 @@
             <div class="col-md-6 col-lg-4" data-category="tools">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">PhotoPea</h5>
+                        <h5 class="card-title">PHOTOPEA</h5>
                         <p class="card-text">Online photo editor (PhotoShop alternative). Forked project.</p>
-                        <a href="https://ligul.github.io/PhotoPea/" class="btn btn-primary">Open</a>
+                        <a href="https://ligul.github.io/PhotoPea/" class="btn btn-dark">OPEN</a>
                     </div>
                 </div>
             </div>
