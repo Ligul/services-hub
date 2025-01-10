@@ -140,46 +140,66 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Search functionality
-        document.getElementById('search').addEventListener('input', function(e) {
-            const searchText = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
+    // Search functionality
+    document.getElementById('search').addEventListener('input', function(e) {
+        const searchText = e.target.value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+        
+        cards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const description = card.querySelector('.card-text').textContent.toLowerCase();
+            const cardContainer = card.closest('[data-category]');
             
-            cards.forEach(card => {
-                const title = card.querySelector('.card-title').textContent.toLowerCase();
-                const description = card.querySelector('.card-text').textContent.toLowerCase();
-                const cardContainer = card.closest('[data-category]');
-                
-                if (title.includes(searchText) || description.includes(searchText)) {
-                    cardContainer.classList.remove('hidden');
-                } else {
-                    cardContainer.classList.add('hidden');
-                }
-            });
+            if (title.includes(searchText) || description.includes(searchText)) {
+                cardContainer.classList.remove('hidden');
+            } else {
+                cardContainer.classList.add('hidden');
+            }
         });
+    });
 
-        // Category filtering
-        document.querySelectorAll('[data-category]').forEach(button => {
-            button.addEventListener('click', function() {
-                const category = this.dataset.category;
-                const cards = document.querySelectorAll('#services-grid > div');
-                
-                // Update active button
-                document.querySelectorAll('[data-category]').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Show/hide cards
-                cards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            });
+    // Category filtering - обновленная версия
+    let currentCategory = 'all'; // Храним текущую выбранную категорию
+
+    // Функция для фильтрации карточек
+    function filterCards(category) {
+        const cards = document.querySelectorAll('#services-grid > div');
+        
+        cards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
         });
-    </script>
+    }
+
+    // Функция для обновления активной кнопки
+    function updateActiveButton(category) {
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.category === category) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    // Обработчик для кнопок категорий
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Предотвращаем всплытие
+            currentCategory = this.dataset.category;
+            updateActiveButton(currentCategory);
+            filterCards(currentCategory);
+        });
+    });
+
+    // Предотвращаем всплытие кликов с карточек и кнопок
+    document.querySelectorAll('.card, .btn').forEach(element => {
+        element.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+</script>
 </body>
 </html>
