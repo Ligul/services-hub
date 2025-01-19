@@ -231,6 +231,26 @@
                         </div>
                     </article>
 
+                    <!-- Social Media Preview Generator -->
+                    <article class="col-md-6 col-lg-4" data-category="tools">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    SOCIAL MEDIA PREVIEW GENERATOR
+                                </h5>
+                                <p class="card-text">
+                                    Generate social media preview images for
+                                    your website.
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/social-media-preview-generator/"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+
                     <!-- Texture Converter -->
                     <article class="col-md-6 col-lg-4" data-category="tools">
                         <div class="card h-100">
@@ -334,7 +354,7 @@
             // Handle category button clicks
             document.querySelectorAll(".category-btn").forEach((button) => {
                 button.addEventListener("click", function (e) {
-                    e.stopPropagation(); // Предотвращаем всплытие
+                    e.stopPropagation(); // Prevent click events from bubbling up
                     currentCategory = this.dataset.category;
                     updateActiveButton(currentCategory);
                     filterCards(currentCategory);
