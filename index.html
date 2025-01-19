@@ -1,205 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Services Hub</title>
-    <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .card {
-            transition: transform 0.2s;
-            border: 1px solid rgba(0,0,0,.125);
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .hidden {
-            display: none !important;
-        }
-        /* Новые стили для кнопок категорий */
-        .category-btn {
-            background: none;
-            border: 1px solid #333;
-            color: #333;
-            padding: 0.5rem 1rem;
-            margin: 0 0.25rem;
-            border-radius: 0;
-            transition: all 0.3s ease;
-        }
-        .category-btn:hover {
-            background: #333;
-            color: white;
-        }
-        .category-btn.active {
-            background: #333;
-            color: white;
-            border-color: #333;
-        }
-        /* Убираем стандартные стили Lux для кнопок в группе */
-        .btn-group .btn {
-            margin: 0 2px;
-        }
-        .btn-group > .btn {
-            border-radius: 0 !important;
-        }
-    </style>
-</head>
-<body>
-    <div class="container py-5">
-        <h1 class="text-center mb-5">My Services Hub</h1>
-        
-        <!-- Search -->
-        <div class="row mb-4">
-            <div class="col-md-6 mx-auto">
-                <input type="text" id="search" class="form-control" placeholder="Search services...">
-            </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ligul's Services Hub</title>
+        <link
+            href="https://bootswatch.com/5/lux/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <!-- Meta tags for SEO -->
+        <meta
+            name="description"
+            content="Explore Ligul's tools and services: AI-powered tools, productivity apps, utilities for developers, and educational resources."
+        />
+        <meta
+            name="keywords"
+            content="Ligul, tools, AI, productivity, education, developer utilities, GitHub Pages"
+        />
+        <meta name="author" content="Ligul" />
+
+        <!-- Open Graph for Social Sharing -->
+        <meta property="og:title" content="Ligul's Services Hub" />
+        <meta
+            property="og:description"
+            content="Explore Ligul's tools and services: AI-powered tools, productivity apps, utilities for developers, and educational resources."
+        />
+        <meta
+            property="og:image"
+            content="https://ligul.github.io/services-hub/og-preview.jpg"
+        />
+        <meta
+            property="og:url"
+            content="https://ligul.github.io/services-hub"
+        />
+        <meta property="og:type" content="website" />
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ligul's Services Hub" />
+        <meta
+            name="twitter:description"
+            content="Explore Ligul's tools and services: AI-powered tools, productivity apps, utilities for developers, and educational resources."
+        />
+        <meta
+            name="twitter:image"
+            content="https://ligul.github.io/services-hub/twitter-preview.jpg"
+        />
+        <style>
+            .card {
+                transition: transform 0.2s;
+                border: 1px solid rgba(0, 0, 0, 0.125);
+            }
+            .card:hover {
+                transform: translateY(-5px);
+            }
+            .hidden {
+                display: none !important;
+            }
+            .category-btn {
+                background: none;
+                border: 1px solid #333;
+                color: #333;
+                padding: 0.5rem 1rem;
+                margin: 0 0.25rem;
+                border-radius: 0;
+                transition: all 0.3s ease;
+            }
+            .category-btn:hover {
+                background: #333;
+                color: white;
+            }
+            .category-btn.active {
+                background: #333;
+                color: white;
+                border-color: #333;
+            }
+            .btn-group .btn {
+                margin: 0 2px;
+            }
+            .btn-group > .btn {
+                border-radius: 0 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container py-5">
+            <header>
+                <h1 class="text-center mb-5">Ligul's Services Hub</h1>
+            </header>
+
+            <!-- Search -->
+            <section aria-labelledby="search-label">
+                <div class="row mb-4">
+                    <div class="col-md-6 mx-auto">
+                        <input
+                            type="text"
+                            id="search"
+                            class="form-control"
+                            placeholder="Search services..."
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <nav aria-label="Service categories">
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <div class="d-flex justify-content-center">
+                            <button
+                                type="button"
+                                class="category-btn active"
+                                data-category="all"
+                            >
+                                ALL
+                            </button>
+                            <button
+                                type="button"
+                                class="category-btn"
+                                data-category="productivity"
+                            >
+                                PRODUCTIVITY
+                            </button>
+                            <button
+                                type="button"
+                                class="category-btn"
+                                data-category="tools"
+                            >
+                                TOOLS
+                            </button>
+                            <button
+                                type="button"
+                                class="category-btn"
+                                data-category="ai"
+                            >
+                                AI
+                            </button>
+                            <button
+                                type="button"
+                                class="category-btn"
+                                data-category="education"
+                            >
+                                EDUCATION
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <main>
+                <!-- Services Grid -->
+                <div class="row g-4" id="services-grid">
+                    <!-- AI Translator -->
+                    <article class="col-md-6 col-lg-4" data-category="ai">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">AI TRANSLATOR</h5>
+                                <p class="card-text">
+                                    GPT-powered translation service for accurate
+                                    and context-aware translations.
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/ai-translate/"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Task Tracker -->
+                    <article
+                        class="col-md-6 col-lg-4"
+                        data-category="productivity"
+                    >
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">TASK TRACKER</h5>
+                                <p class="card-text">
+                                    Manage your tasks and to-do lists with this
+                                    recursive task tracker.
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/recursive-task-tracker/spa.html"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Content Planner -->
+                    <article
+                        class="col-md-6 col-lg-4"
+                        data-category="productivity"
+                    >
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">CONTENT PLANNER</h5>
+                                <p class="card-text">
+                                    Plan and track your video/post content. Keep
+                                    record of published and upcoming content.
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/simple-planner/"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Reading Time Calculator -->
+                    <article class="col-md-6 col-lg-4" data-category="tools">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    READING TIME CALCULATOR
+                                </h5>
+                                <p class="card-text">
+                                    Calculate how long it will take to read your
+                                    text based on different reading speeds.
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/reading-time-calculator/"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Texture Converter -->
+                    <article class="col-md-6 col-lg-4" data-category="tools">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">TEXTURE CONVERTER</h5>
+                                <p class="card-text">
+                                    Convert textures between different 3D
+                                    programs (Unity to Blender, etc.).
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/TextureConverter/convert.html"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Alpha Shift -->
+                    <article
+                        class="col-md-6 col-lg-4"
+                        data-category="education"
+                    >
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">ALPHA SHIFT</h5>
+                                <p class="card-text">
+                                    Learn new alphabets by gradually replacing
+                                    letters in text (Work in Progress).
+                                </p>
+                                <a
+                                    href="https://ligul.github.io/alpha-shift/"
+                                    class="btn btn-dark"
+                                    >OPEN</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
         </div>
 
-        <!-- Categories -->
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="category-btn active" data-category="all">ALL</button>
-                    <button type="button" class="category-btn" data-category="productivity">PRODUCTIVITY</button>
-                    <button type="button" class="category-btn" data-category="tools">TOOLS</button>
-                    <button type="button" class="category-btn" data-category="ai">AI</button>
-                    <button type="button" class="category-btn" data-category="education">EDUCATION</button>
-                </div>
-            </div>
-        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Search functionality
+            document
+                .getElementById("search")
+                .addEventListener("input", function (e) {
+                    const searchText = e.target.value.toLowerCase();
+                    const cards = document.querySelectorAll(".card");
 
-        <!-- Services Grid -->
-        <div class="row g-4" id="services-grid">
-            <!-- Content Planner -->
-            <div class="col-md-6 col-lg-4" data-category="productivity">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">CONTENT PLANNER</h5>
-                        <p class="card-text">Plan and track your video/post content. Keep record of published and upcoming content.</p>
-                        <a href="https://ligul.github.io/simple-planner/" class="btn btn-dark">OPEN</a>
-                    </div>
-                </div>
-            </div>
+                    cards.forEach((card) => {
+                        const title = card
+                            .querySelector(".card-title")
+                            .textContent.toLowerCase();
+                        const description = card
+                            .querySelector(".card-text")
+                            .textContent.toLowerCase();
+                        const cardContainer = card.closest("[data-category]");
 
-            <!-- Task Tracker -->
-            <div class="col-md-6 col-lg-4" data-category="productivity">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">TASK TRACKER</h5>
-                        <p class="card-text">Manage your tasks and to-do lists with this recursive task tracker.</p>
-                        <a href="https://ligul.github.io/recursive-task-tracker/spa.html" class="btn btn-dark">OPEN</a>
-                    </div>
-                </div>
-            </div>
+                        if (
+                            title.includes(searchText) ||
+                            description.includes(searchText)
+                        ) {
+                            cardContainer.classList.remove("hidden");
+                        } else {
+                            cardContainer.classList.add("hidden");
+                        }
+                    });
+                });
 
-            <!-- AI Translator -->
-            <div class="col-md-6 col-lg-4" data-category="ai">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">AI TRANSLATOR</h5>
-                        <p class="card-text">GPT-powered translation service for accurate and context-aware translations.</p>
-                        <a href="https://ligul.github.io/ai-translate/" class="btn btn-dark">OPEN</a>
-                    </div>
-                </div>
-            </div>
+            // Category filtering
+            let currentCategory = "all";
 
-            <!-- Texture Converter -->
-            <div class="col-md-6 col-lg-4" data-category="tools">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">TEXTURE CONVERTER</h5>
-                        <p class="card-text">Convert textures between different 3D programs (Unity to Blender, etc.).</p>
-                        <a href="https://ligul.github.io/TextureConverter/convert.html" class="btn btn-dark">OPEN</a>
-                    </div>
-                </div>
-            </div>
+            // Filter cards based on the category
+            function filterCards(category) {
+                const cards = document.querySelectorAll("#services-grid > div");
 
-            <!-- Alpha Shift -->
-            <div class="col-md-6 col-lg-4" data-category="education">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">ALPHA SHIFT</h5>
-                        <p class="card-text">Learn new alphabets by gradually replacing letters in text (Work in Progress).</p>
-                        <a href="https://ligul.github.io/alpha-shift/" class="btn btn-dark">OPEN</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PhotoPea -->
-            <div class="col-md-6 col-lg-4" data-category="tools">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">PHOTOPEA</h5>
-                        <p class="card-text">Online photo editor (PhotoShop alternative). Forked project.</p>
-                        <a href="https://ligul.github.io/PhotoPea/" class="btn btn-dark">OPEN</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-    // Search functionality
-    document.getElementById('search').addEventListener('input', function(e) {
-        const searchText = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.card');
-        
-        cards.forEach(card => {
-            const title = card.querySelector('.card-title').textContent.toLowerCase();
-            const description = card.querySelector('.card-text').textContent.toLowerCase();
-            const cardContainer = card.closest('[data-category]');
-            
-            if (title.includes(searchText) || description.includes(searchText)) {
-                cardContainer.classList.remove('hidden');
-            } else {
-                cardContainer.classList.add('hidden');
+                cards.forEach((card) => {
+                    if (
+                        category === "all" ||
+                        card.dataset.category === category
+                    ) {
+                        card.classList.remove("hidden");
+                    } else {
+                        card.classList.add("hidden");
+                    }
+                });
             }
-        });
-    });
 
-    // Category filtering - обновленная версия
-    let currentCategory = 'all'; // Храним текущую выбранную категорию
-
-    // Функция для фильтрации карточек
-    function filterCards(category) {
-        const cards = document.querySelectorAll('#services-grid > div');
-        
-        cards.forEach(card => {
-            if (category === 'all' || card.dataset.category === category) {
-                card.classList.remove('hidden');
-            } else {
-                card.classList.add('hidden');
+            // Highlight the active category button
+            function updateActiveButton(category) {
+                document.querySelectorAll(".category-btn").forEach((btn) => {
+                    btn.classList.remove("active");
+                    if (btn.dataset.category === category) {
+                        btn.classList.add("active");
+                    }
+                });
             }
-        });
-    }
 
-    // Функция для обновления активной кнопки
-    function updateActiveButton(category) {
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.category === category) {
-                btn.classList.add('active');
-            }
-        });
-    }
+            // Handle category button clicks
+            document.querySelectorAll(".category-btn").forEach((button) => {
+                button.addEventListener("click", function (e) {
+                    e.stopPropagation(); // Предотвращаем всплытие
+                    currentCategory = this.dataset.category;
+                    updateActiveButton(currentCategory);
+                    filterCards(currentCategory);
+                });
+            });
 
-    // Обработчик для кнопок категорий
-    document.querySelectorAll('.category-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation(); // Предотвращаем всплытие
-            currentCategory = this.dataset.category;
-            updateActiveButton(currentCategory);
-            filterCards(currentCategory);
-        });
-    });
-
-    // Предотвращаем всплытие кликов с карточек и кнопок
-    document.querySelectorAll('.card, .btn').forEach(element => {
-        element.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    });
-</script>
-</body>
+            // Prevent click events from bubbling up to parent elements
+            document.querySelectorAll(".card, .btn").forEach((element) => {
+                element.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                });
+            });
+        </script>
+    </body>
 </html>
