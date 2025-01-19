@@ -300,7 +300,9 @@
                 .getElementById("search")
                 .addEventListener("input", function (e) {
                     const searchText = e.target.value.toLowerCase();
-                    const cards = document.querySelectorAll(".card");
+                    const cards = document.querySelectorAll(
+                        "#services-grid > article"
+                    );
 
                     cards.forEach((card) => {
                         const title = card
@@ -309,15 +311,14 @@
                         const description = card
                             .querySelector(".card-text")
                             .textContent.toLowerCase();
-                        const cardContainer = card.closest("[data-category]");
 
                         if (
                             title.includes(searchText) ||
                             description.includes(searchText)
                         ) {
-                            cardContainer.classList.remove("hidden");
+                            card.classList.remove("hidden");
                         } else {
-                            cardContainer.classList.add("hidden");
+                            card.classList.add("hidden");
                         }
                     });
                 });
@@ -327,7 +328,10 @@
 
             // Filter cards based on the category
             function filterCards(category) {
-                const cards = document.querySelectorAll("#services-grid > div");
+                // Изменим селектор на выбор article элементов
+                const cards = document.querySelectorAll(
+                    "#services-grid > article"
+                );
 
                 cards.forEach((card) => {
                     if (
@@ -354,7 +358,7 @@
             // Handle category button clicks
             document.querySelectorAll(".category-btn").forEach((button) => {
                 button.addEventListener("click", function (e) {
-                    e.stopPropagation(); // Prevent click events from bubbling up
+                    e.stopPropagation();
                     currentCategory = this.dataset.category;
                     updateActiveButton(currentCategory);
                     filterCards(currentCategory);
